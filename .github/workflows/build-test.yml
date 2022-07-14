@@ -37,14 +37,13 @@ jobs:
             ${{ runner.os }}-node-
 
       - name: Install NPM dependencies
-        if: steps.npm-cache.outputs.cache-hit != 'true'
         run: npm ci --quiet --no-progress
 
       - name: Lint
-        run: ./node_modules/.bin/gulp lint
+        run:  $(npm bin)/gulp lint
 
       - name: Build bundle
-        run: ./node_modules/.bin/gulp bundle
+        run: $(npm bin)/gulp bundle
 
   finish:
     name: Finish
