@@ -3,7 +3,7 @@ footer.footer {
   color: var(--footer-font-color);
   font-size: calc(15 / var(--rem-base) * 1rem);
   line-height: var(--footer-line-height);
-  padding: 1.5rem;
+  text-align: center;
 }
 
 .footer p {
@@ -12,4 +12,218 @@ footer.footer {
 
 .footer a {
   color: var(--footer-link-font-color);
+  text-decoration: none;
+}
+
+body > footer .logo {
+  float: left;
+}
+
+body > footer .wrapper {
+  zoom: 1;
+  padding: 40px 30px;
+  width: 960px;
+  margin: 0 auto;
+}
+
+@media only screen and (max-width: 960px) {
+  body > footer .wrapper {
+    width: auto;
+  }
+}
+
+body > footer .wrapper::after {
+  content: " ";
+  display: block;
+  clear: both;
+}
+
+body > footer .wrapper div {
+  width: 25%;
+  padding: 0 10px;
+  float: left;
+}
+
+@media only screen and (max-width: 960px) {
+  body > footer .wrapper {
+    padding: 20px;
+  }
+
+  body > footer .wrapper div {
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  body > footer .wrapper div {
+    width: auto;
+    float: none;
+    margin-top: 30px;
+  }
+}
+
+body > footer .wrapper h3 {
+  padding: 9px 0;
+  font-weight: bold;
+  font-size: 16px;
+  border-bottom: 1px solid #444;
+}
+
+body > footer .credits {
+  width: 880px;
+  margin: 0 auto;
+  padding: 40px 0;
+  border-top: 1px solid #444;
+  text-align: center;
+  color: #777;
+}
+
+@media only screen and (max-width: 960px) {
+  body > footer .credits {
+    padding: 20px;
+    width: auto;
+  }
+
+  body > footer .credits p {
+    clear: both;
+    padding: 20px 0 0;
+  }
+}
+
+body > footer .credits .logo img {
+  height: 24px;
+}
+
+body > footer .lb-legal {
+  width: 880px;
+  margin: 0 auto;
+  padding: 40px 0;
+  border-top: 1px solid #444;
+  text-align: center;
+  color: #777;
+  line-height: 1.4;
+}
+
+@media only screen and (max-width: 960px) {
+  body > footer .lb-legal {
+    padding: 20px;
+    width: auto;
+  }
+}
+
+body > footer .lb-legal a:hover {
+  cursor: pointer;
+}
+
+body > footer .partner {
+  float: right;
+  margin-left: 10px;
+}
+
+body > footer ul {
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+body > footer ul li {
+  padding: 4px 0;
+}
+
+body > footer a:hover {
+  color: #008000;
+}
+
+body > footer em {
+  color: #666;
+  font-size: 12px;
+  font-style: inherit;
+  text-transform: uppercase;
+}
+
+body > footer img {
+  height: 18px;
+  vertical-align: middle;
+}
+
+#support {
+  background: #454545;
+  zoom: 1;
+  padding: 40px 0;
+}
+
+#support::after {
+  content: " ";
+  display: block;
+  clear: both;
+}
+
+#support a {
+  color: #aaa;
+}
+
+#support a:hover {
+  color: #008000;
+  text-decoration: none;
+}
+
+#support .wrapper {
+  padding: 40px;
+  zoom: 1;
+}
+
+#support .wrapper::after {
+  content: " ";
+  display: block;
+  clear: both;
+}
+
+#support article {
+  display: inline-block;
+  height: 50px;
+  text-align: left;
+  padding: 0 0 0 70px;
+}
+
+#support article.community {
+  background: url("https://playframework.com/assets/images/support/community.png") no-repeat;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+  #support article.community {
+    background-image: url("https://playframework.com/assets/images/support/community@2x.png");
+    background-size: auto 50px;
+  }
+}
+
+#support article.professional {
+  margin-left: 50px;
+  background: url("https://playframework.com/assets/images/support/opencollective-icon-reverse.svg") no-repeat;
+  background-size: auto 50px;
+}
+
+@media only screen and (max-width: 960px) {
+  #support {
+    padding: 1px 20px !important;
+  }
+
+  #support article {
+    display: block;
+    height: auto;
+    margin: 30px 0 !important;
+  }
+}
+
+#support h3 {
+  margin: 3px 0;
+  color: #fff;
+}
+
+#support li {
+  padding: 0 10px 5px 0;
+  display: inline-block;
+}
+
+#support li::before {
+  content: none;
 }
