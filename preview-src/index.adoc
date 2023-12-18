@@ -77,6 +77,73 @@ Voila!
 Voila!
 ====
 
+Tabs with nested tabs.
+
+[tabs]
+====
+Windows::
++
+Execute the following commands in PowerShell:
++
+[,bash]
+----
+choco install stuff
+----
+
+Linux::
++
+--
+For Linux distributions, the process changes according to the distribution:
+
+[tabs]
+======
+Fedora/RedHat::
++
+Execute the following commands on the terminal:
++
+[,bash]
+----
+sudo yum update
+----
+
+Debian/Ubuntu::
++
+Execute the following commands on the terminal:
++
+[,bash]
+----
+sudo apt update
+sudo apt install
+----
+======
+--
+====
+
+Tabs with wide table content.
+
+[tabs]
+====
+Tab A:: Content
+
+Tab B::
+* one
+* two
+* three
+
+Tab C::
++
+|===
+|AAAAAAAAAAAAAAAAAAAA |BBBBBBBBBBBBBBBBBBBBBBBB |CCCCCCCCCCCCCCCCCCCCC |DDDDDDDDDDDDDDDDDDDD
+
+|cell
+|cell
+|cell
+|cell
+|===
+====
+
+There you have it.
+
 === Some Code
 
 How about some code?
