@@ -21,7 +21,21 @@ module.exports = (src, previewSrc, previewDest, sink = () => map()) => (done) =>
       merge(compileLayouts(src), registerPartials(src), registerHelpers(src), copyImages(previewSrc, previewDest))
     ),
   ])
-    .then(([baseUiModel, { layouts }]) => [{ ...baseUiModel, env: process.env }, layouts])
+    .then(([baseUiModel, { layouts }]) => {
+      const extensions = ((baseUiModel.asciidoc || {}).extensions || []).map((request) => {
+        ASCIIDOC_ATTRIBUTES[request.replace(/^@|\.js$/, '').replace(/[/]/g, '-') + '-loaded'] = ''
+        const extension = require(request)
+        extension.register.call(Asciidoctor.Extensions)
+        return extension
+      })
+      const asciidoc = { extensions }
+      for (const component of baseUiModel.site.components) {
+        for (const version of component.versions || []) version.asciidoc = asciidoc
+      }
+      baseUiModel = { ...baseUiModel, env: process.env }
+      delete baseUiModel.asciidoc
+      return [baseUiModel, layouts]
+    })
     .then(([baseUiModel, layouts]) =>
       vfs
         .src('**/*.adoc', { base: previewSrc, cwd: previewSrc })
@@ -39,7 +53,7 @@ module.exports = (src, previewSrc, previewDest, sink = () => map()) => (done) =>
               uiModel.page.attributes = Object.entries(doc.getAttributes())
                 .filter(([name, val]) => name.startsWith('page-'))
                 .reduce((accum, [name, val]) => {
-                  accum[name.substr(5)] = val
+                  accum[name.slice(5)] = val
                   return accum
                 }, {})
               uiModel.page.layout = doc.getAttribute('page-layout', 'default')
@@ -120,7 +134,7 @@ function transformHandlebarsError ({ message, stack }, layout) {
   const m = stack.match(/^ *at Object\.ret \[as (.+?)\]/m)
   const templatePath = `src/${m ? 'partials/' + m[1] : 'layouts/' + layout}.hbs`
   const err = new Error(`${message}${~message.indexOf('\n') ? '\n^ ' : ' '}in UI template ${templatePath}`)
-  err.stack = [err.toString()].concat(stack.substr(message.length + 8)).join('\n')
+  err.stack = [err.toString()].concat(stack.slice(message.length + 8)).join('\n')
   return err
 }
 
