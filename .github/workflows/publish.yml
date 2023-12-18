@@ -7,19 +7,19 @@ on:
 jobs:
   publish-artifacts:
     name: "Release Play Antora UI"
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           # we don't know what commit the last tag was it's safer to get entire repo so previousStableVersion resolves
           fetch-depth: 0
           ref: ${{ inputs.ref }}
 
       - name: Install NodeJS
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 16
+          node-version: 20
           cache: 'npm'
 
       - name: Get npm cache directory
@@ -38,7 +38,7 @@ jobs:
         run: npm ci --quiet --no-progress
 
       - name: Build bundle
-        run: $(npm bin)/gulp bundle
+        run: npx gulp bundle
 
       - name: Release
         uses: softprops/action-gh-release@v1
