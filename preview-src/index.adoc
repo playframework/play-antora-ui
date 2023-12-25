@@ -144,6 +144,14 @@ Tab C::
 
 There you have it.
 
+The module file is generated in ... for [.lang-java]#Java# [.lang-scala]#Scala#
+
+[tabs%sync,sync-group-id=lang]
+====
+Java:: Java
+Scala:: Scala
+====
+
 === Some Code
 
 How about some code?
